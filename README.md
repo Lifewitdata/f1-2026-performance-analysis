@@ -50,6 +50,36 @@ SPRINT RESULTS ──┘
 
 ---
 
+## Data Visualizations
+
+### Qualifying Grid vs Sprint Race Finish
+> Every dot is one driver at one race weekend. The dashed line is the regression fit. A strong diagonal confirms that where you qualify is largely where you finish.
+
+![Qualifying vs Sprint Finish](chart1_scatter.png)
+
+---
+
+### Places Gained or Lost vs Sprint Starting Grid
+> Who actually moves through the field once the race starts — and who drops back. Red = gained positions, grey = lost positions. Average across all three sprint weekends.
+
+![Grid Diff by Driver](chart2_griddiff.png)
+
+---
+
+### Sprint Qualifying Position by Race Finish Group
+> One-way ANOVA test in visual form. The box plot separation between Podium and Tail groups is the statistical story — podium finishers come from significantly better qualifying slots.
+
+![Boxplot by Finish Group](chart4_boxplot.png)
+
+---
+
+### Sprint Season Points by Constructor
+> Total sprint points across China, Miami, and Canada. Shows the performance gap between the top teams and the rest of the grid.
+
+![Team Sprint Points](chart3_teampoints.png)
+
+---
+
 ## The Three Hypothesis Tests
 
 ### `H1` — Does Sunday qualifying grid predict sprint race finish?
@@ -79,7 +109,7 @@ podium_finish        <- if_else(race_position <= 3, 1, 0)  # binary target varia
 ## Repository Map
 
 ```
-f1-performance-analysis-2026/
+f1-sprint-predictor/
 │
 ├── data/
 │   ├── Formula1_2026Season_SprintResults.csv
@@ -129,15 +159,6 @@ Charts land in `outputs/charts/` at 300 DPI. The clean master dataset is saved t
 ## Why This Maps to EA
 
 EA's data team predicts player outcomes from pre-session signals — MMR, recent win rate, session history. This project is the same problem in a different domain: **pre-race signals predicting in-race outcomes**. The pipeline (ingest → clean → test → model → communicate) is identical to what a live-service analytics team does every week.
-
----
-
-## Resume Bullets
-
-- Built an end-to-end F1 sprint performance analysis pipeline in R (tidyverse · tidymodels · ggplot2) covering data wrangling, hypothesis testing, logistic regression, and HTML report delivery
-- Quantified the relationship between qualifying position and sprint race outcome via Spearman correlation (ρ ≈ 0.7+), one-sided t-test, and one-way ANOVA with Tukey HSD post-hoc — all results documented with p-values and confidence intervals
-- Engineered three predictive features (`grid_diff`, `sprint_to_race_delta`, `podium_finish`) and evaluated a logistic regression classifier using AUC-ROC, confusion matrix, precision, recall, and F1
-- Delivered a reproducible R Markdown report with 6 F1-branded ggplot2 visualisations exported at 300 DPI via patchwork multi-panel dashboard
 
 ---
 
