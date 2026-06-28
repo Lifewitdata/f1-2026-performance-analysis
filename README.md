@@ -166,6 +166,5 @@ EA's data team predicts player outcomes from pre-session signals — MMR, recent
 
 **Stack:** `R 4.4+` · `tidyverse` · `tidymodels` · `ggplot2` · `patchwork` · `broom` · `pROC` · `janitor` · `R Markdown`
 
-*EA Associate Data Science Portfolio · Isfaq · 2026*
 
 </div>
