@@ -1,8 +1,8 @@
 # =============================================================================
 # F1 Race Performance Statistical Analysis (2026)
-# EA Associate Data Science Portfolio Project
+# Data Science Portfolio Project
 # =============================================================================
-# Author:  Isfaq
+# Author:  Isfaque Ansari
 # Dataset: 2026 F1 Season — Qualifying, Sprint Qualifying, Sprint Race Results
 # Tool:    R | tidyverse | ggplot2 | tidymodels | broom | pROC
 # =============================================================================
@@ -27,12 +27,14 @@ library(scales)
 
 # ── 1.2  Load raw CSVs ───────────────────────────────────────────────────────
 # Update these paths to wherever you place the files locally.
-raw_sprint     <- read_csv("data/Formula1_2026Season_SprintResults.csv",
-                           show_col_types = FALSE)
-raw_sprint_q   <- read_csv("data/Formula1_2026Season_SprintQualifyingResults.csv",
-                           show_col_types = FALSE)
-raw_qual       <- read_csv("data/Formula1_2026Season_QualifyingResults.csv",
-                           show_col_types = FALSE)
+raw_sprint   <- read.csv("C:/Users/hp/Downloads/Formula1_2026Season_SprintResults.csv")
+raw_sprint   
+
+raw_sprint_q <- read.csv("C:/Users/hp/Downloads/Formula1_2026Season_SprintQualifyingResults.csv")
+raw_sprint_q
+
+raw_qual <- read.csv("C:/Users/hp/Downloads/Formula1_2026Season_QualifyingResults.csv")
+raw_qual
 
 # ── 1.3  Inspect ─────────────────────────────────────────────────────────────
 glimpse(raw_sprint)
@@ -151,7 +153,7 @@ print(colSums(is.na(master)))
 # ── 1.8  Save clean master dataset ───────────────────────────────────────────
 dir.create("data/clean", showWarnings = FALSE)
 saveRDS(master, "data/clean/f1_master_2026.rds")
-cat("\n✅ Master dataset saved to data/clean/f1_master_2026.rds\n")
+cat("\n Master dataset saved to data/clean/f1_master_2026.rds\n")
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -313,7 +315,7 @@ p1 <- master |>
 
 ggsave("outputs/charts/01_qual_vs_sprint_scatter.png", p1,
        width = 10, height = 7, dpi = 300, bg = "#0F0F0F")
-cat("✅ Chart 1 saved\n")
+cat("Chart 1 saved\n")
 
 # ── Chart 2: Grid positions gained/lost per driver (bar chart) ───────────────
 p2 <- driver_stats |>
@@ -338,7 +340,7 @@ p2 <- driver_stats |>
 
 ggsave("outputs/charts/02_grid_diff_by_driver.png", p2,
        width = 10, height = 8, dpi = 300, bg = "#0F0F0F")
-cat("✅ Chart 2 saved\n")
+cat(" Chart 2 saved\n")
 
 # ── Chart 3: Sprint qualifying position by finish group (box plot) ────────────
 p3 <- master_anova |>
@@ -364,7 +366,7 @@ p3 <- master_anova |>
 
 ggsave("outputs/charts/03_boxplot_sq_by_finish_group.png", p3,
        width = 10, height = 7, dpi = 300, bg = "#0F0F0F")
-cat("✅ Chart 3 saved\n")
+cat(" Chart 3 saved\n")
 
 # ── Chart 4: Total sprint points by team (bar) ───────────────────────────────
 p4 <- team_stats |>
@@ -387,7 +389,7 @@ p4 <- team_stats |>
 
 ggsave("outputs/charts/04_team_sprint_points.png", p4,
        width = 10, height = 7, dpi = 300, bg = "#0F0F0F")
-cat("✅ Chart 4 saved\n")
+cat(" Chart 4 saved\n")
 
 # ── Chart 5: Sprint qualifying to race delta — faceted by weekend ─────────────
 p5 <- master |>
@@ -415,7 +417,7 @@ p5 <- master |>
 
 ggsave("outputs/charts/05_sprint_delta_facet.png", p5,
        width = 14, height = 8, dpi = 300, bg = "#0F0F0F")
-cat("✅ Chart 5 saved\n")
+cat("Chart 5 saved\n")
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -515,7 +517,7 @@ p_roc <- ggplot(roc_df, aes(x = 1 - specificity, y = sensitivity)) +
 
 ggsave("outputs/charts/06_auc_roc_curve.png", p_roc,
        width = 8, height = 7, dpi = 300, bg = "#0F0F0F")
-cat("✅ AUC-ROC chart saved\n")
+cat(" AUC-ROC chart saved\n")
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -536,7 +538,7 @@ dashboard <- (p1 | p2) / (p3 | p4) +
 
 ggsave("outputs/charts/00_dashboard_panel.png", dashboard,
        width = 20, height = 14, dpi = 300, bg = "#0F0F0F")
-cat("✅ Dashboard panel saved\n")
+cat(" Dashboard panel saved\n")
 
 
 # ─────────────────────────────────────────────────────────────────────────────
